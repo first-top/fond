@@ -1,0 +1,305 @@
+
+@media (max-width: 1200px) {
+	.intro {
+		&__items-wrapper {
+			width: calc(100% - 30px);
+			max-width: none;
+			left: 15px;
+			right: 15px;
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.header {
+		&__img {
+			max-width: 70px;
+			margin-right: 10px;
+		}
+		&__text {
+			font-size: 20px;
+		}
+		&__socials {
+			margin-right: 30px;
+		}
+		&__phone {
+			a {
+				font-size: 20px;
+			}
+		}
+		&__menu {
+			width: 50px;
+			height: 50px;
+			margin-left: 25px;
+		}
+	}
+	.intro {
+		//padding-bottom: 85px;
+		&__text,
+		&__picture {
+			flex: 1;
+			width: 100%;
+		}
+		&__numbers {
+			line-height: 1.2;
+		}
+		&__items-wrapper {
+			bottom: auto;
+			top: calc(100% - 110px);
+		}
+	}
+	.video {
+		&__body {
+			flex-direction: column-reverse;
+		}
+		&__content {
+			flex: 0 1 auto;
+		}
+	}
+	.footer {
+		&__img {
+			max-width: 100px;
+			margin-right: 30px;
+		}
+		&__text {
+			font-size: 20px;
+			span {
+				font-size: 28px;
+			}
+		}
+		&__phone {
+			a {
+				font-size: 22px;
+			}
+		}
+		&__bottom {
+			flex-direction: column;
+			gap: 20px;
+		}
+		&__police {
+			max-width: 100%;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.container {
+		padding: 0 8px;
+	}
+	.section {
+		padding: 35px 0;
+	}
+	.section-title {
+		margin-bottom: 30px;
+	}
+	.header {
+		&__body {
+			flex-wrap: wrap;
+		}
+		&__logo {
+			order: 1;
+		}
+		&__img {
+			max-width: 80px;
+			margin-right: 20px;
+		}
+		&__actions {
+			order: 3;
+			width: 100%;
+			justify-content: center;
+		}
+		&__text {
+			font-size: 18px;
+			span {
+				font-size: 24px;
+			}
+		}
+		&__socials {
+			margin-right: 15px;
+			//gap: 10px;
+		}
+		&__buttons {
+			order: 2;
+		}
+	}
+	.intro {
+		padding-top: 25px;
+		//padding-bottom: 35px;
+		margin-bottom: 25px;
+		&__title {
+			margin-bottom: 30px;
+		}
+		&__body {
+			flex-direction: column;
+		}
+		&__text {
+			p {
+				line-height: 1.7;
+			}
+		}
+		&__items {
+			flex-wrap: wrap;
+			gap: 4%;
+		}
+	}
+	.intro-item {
+		flex: 0 1 48%;
+		margin-bottom: 4%;
+	}
+	.day-tale {
+		
+		&__body {
+			flex-direction: column;
+		}
+		
+		&__text {
+			max-width: none;
+		}
+		&__link {
+			margin: 0 auto;
+		}
+	}
+	.footer {
+		&__img {
+			max-width: 80px;
+			margin-right: 20px;
+		}
+		&__text {
+			font-size: 18px;
+			span {
+				font-size: 24px;
+			}
+		}
+	}
+	.news-card {
+		&__body {
+			padding: 15px 5px;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.header {
+		//&__body {
+		//	flex-direction: column;
+		//}
+		&__actions {
+			order: 2;
+			width: auto;
+			justify-content: center;
+			flex-direction: column;
+		}
+		&__text {
+			font-size: 18px;
+			span {
+				font-size: 24px;
+			}
+		}
+		&__socials {
+			margin-right: 15px;
+			margin-bottom: 15px;
+			//gap: 10px;
+		}
+		&__buttons {
+			order: 3;
+		}
+		&__logo {
+			margin-bottom: 20px;
+			width: 100%;
+		}
+	}
+	.intro {
+		&__numbers {
+			font-size: 30px;
+			max-width: 100px;
+			&.intro__accent {
+				font-size: 48px;
+			}
+		}
+	}
+	.day-tale {
+		&__title {
+			font-size: 20px ;
+		}
+	}
+	.dcp {
+		&__body {
+			flex-direction: column-reverse;
+		}
+		&__picture {
+			width: 100%;
+			flex: 0 1 auto;
+			margin-bottom: 20px;
+		}
+	}
+	.video {
+		&__body {
+			gap: 30px;
+			margin-bottom: 35px;
+		}
+		&__content {
+			width: 450px;
+			height: 253px;
+		}
+		&__description {
+			p + p{
+				margin-top: 15px;
+			}
+		}
+	}
+	.form {
+		.flex-body {
+			flex-direction: column;
+			gap: 0;
+		}
+	}
+	.footer {
+		&__logo {
+			margin-bottom: 20px;
+		}
+		&__top {
+			flex-direction: column;
+		}
+	}
+	.section-title {
+		font-size: 32px;
+	}
+	.home-news__wrapper {
+		flex-direction: column;
+		gap: 20px;
+	}
+	.news-card {
+		flex: 0 1 auto;
+		&__body {
+			padding: 30px 10px;
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	
+	.intro {
+		&__row {
+			& + & {
+				margin-top: 15px;
+			}
+		}
+	}
+	.intro-item {
+		flex: 0 1 100%;
+	}
+	.dcp {
+		&__list {
+			font-size: 16px;
+			li + li {
+				margin-top: 15px;
+			}
+		}
+	}
+	.video {
+		&__content {
+			width: 300px;
+			height: 168px;
+		}
+	}
+}

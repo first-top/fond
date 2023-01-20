@@ -1,0 +1,30 @@
+.news-card {
+	max-width: 370px;
+	width: 100%;
+	flex: 0 1 33.33%;
+	&__picture {
+		border-radius: 10px;
+		overflow: hidden;
+	}
+	&__body {
+		padding: 30px 10px;
+	}
+	&__title {
+		margin-bottom: 20px;
+		font-size: 18px;
+	}
+	&__description {
+		margin-bottom: 20px;
+	}
+	&__footer {
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__date {
+		color: var(--general-color)
+	}
+	&__section {
+		font-weight: 500;
+	}
+}
+
