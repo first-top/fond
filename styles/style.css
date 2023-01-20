@@ -775,6 +775,7 @@ body {
 
 .help-card__picture {
   position: relative;
+  background-color: blue;
   width: 136px;
   height: 136px;
   display: flex;
