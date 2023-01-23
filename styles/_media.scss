@@ -1,4 +1,14 @@
-
+@media (max-width: 1350px) {
+	.home-friends {
+		.swiper-pagination {
+			display: block;
+		}
+		.swiper-button-prev,
+		.swiper-button-next {
+			display: none;
+		}
+	}
+}
 @media (max-width: 1200px) {
 	.intro {
 		&__items-wrapper {
@@ -56,28 +66,29 @@
 			flex: 0 1 auto;
 		}
 	}
-	.footer {
-		&__img {
-			max-width: 100px;
+	.dispatch {
+		text-align: left;
+		&__content {
+			display: flex;
+			justify-content: space-between;
+		}
+		&__body {
 			margin-right: 30px;
 		}
-		&__text {
-			font-size: 20px;
-			span {
-				font-size: 28px;
-			}
+		form {
+			margin: 0 auto 30px 0 ;
 		}
-		&__phone {
-			a {
-				font-size: 22px;
-			}
+		&__picture {
+			position: static;
+			max-width: 270px;
 		}
-		&__bottom {
-			flex-direction: column;
-			gap: 20px;
+	}
+	.footer {
+		&__logo {
+			//flex: 1;
 		}
-		&__police {
-			max-width: 100%;
+		&__socials {
+			max-width: 166px;
 		}
 	}
 }
@@ -159,16 +170,66 @@
 			margin: 0 auto;
 		}
 	}
+	.help-card {
+		flex: 0 1 49%;
+		max-width: none;
+	}
+	.home-friends {
+		padding-bottom: 70px;
+	}
+	.dispatch {
+		text-align: center;
+		&__content {
+			display: flex;
+			justify-content: space-between;
+		}
+		&__body {
+			margin-right: 0;
+			width: 100%;
+		}
+		&__title {
+			font-size: 24px;
+		}
+		form {
+			margin: 0 auto 30px;
+		}
+		&__picture {
+			display: none;
+			
+		}
+	}
 	.footer {
 		&__img {
-			max-width: 80px;
-			margin-right: 20px;
+			max-width: 70px;
 		}
 		&__text {
-			font-size: 18px;
-			span {
-				font-size: 24px;
+			font-size: 20px;
+		}
+		&__middle {
+			flex-wrap: wrap;
+			max-width: 500px;
+			width: 100%;
+			margin: 0 auto;
+		}
+		&__col {
+			//max-width: 390px;
+			flex: 0 1 180px;
+			margin-bottom: 30px;
+			//margin: 0 11% 30px;
+		}
+		&__bottom {
+			flex-direction: column;
+			text-align: center;
+		}
+		&__copy {
+			margin-bottom: 15px;
+			width: 100%;
+			p {
+				text-align: center;
 			}
+		}
+		&__police {
+			width: 100%;
 		}
 	}
 	.news-card {
@@ -274,10 +335,32 @@
 			padding: 30px 10px;
 		}
 	}
+	.help-card {
+		flex: 0 1 100%;
+		max-width: none;
+	}
+	.header-toggle {
+		overflow: scroll;
+		height: 100vh;
+		&__top {
+			flex-wrap: wrap;
+		}
+		&__col {
+			flex: 0 1 180px;
+			margin-bottom: 30px;
+		}
+	}
 }
 
 @media (max-width: 480px) {
-	
+	.header {
+		&__socials {
+			gap: 10px;
+		}
+		&__actions {
+			margin-right: 15px;
+		}
+	}
 	.intro {
 		&__row {
 			& + & {
@@ -300,6 +383,40 @@
 		&__content {
 			width: 300px;
 			height: 168px;
+		}
+	}
+	.dispatch {
+		form {
+			flex-direction: column;
+		}
+		&__input {
+			border-radius: 20px;
+			margin-bottom: 20px;
+		}
+		&__button {
+			.btn {
+				border-radius: 20px;
+				font-size: 14px;
+				padding: 17px 10px;
+				width: 100%;
+				max-width: 320px;
+			}
+		}
+	}
+	.footer {
+		&__img {
+			width: 70px;
+		}
+		&__body {
+			flex-direction: column;
+		}
+		&__col {
+			flex: 0 1 100%;
+			text-align: center;
+			max-width: none;
+		}
+		&__address {
+			margin: 0 auto;
 		}
 	}
 }

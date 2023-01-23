@@ -183,6 +183,9 @@ body {
 	height: 100%;
 	font-weight: 400;
 	color: var(--text-color);
+	&.no-scroll {
+		overflow: hidden;
+	}
 }
 
 .wrapper {
@@ -194,7 +197,7 @@ body {
 
 .content {
 	flex: 1 0 auto;
-
+	
 }
 
 .footer {
@@ -206,8 +209,9 @@ body {
 	width: 100%;
 	margin: 0 auto;
 	padding: 0 15px;
-	border-right: 1px solid red;
-	border-left: 1px solid red;
+	//border-right: 1px solid red;
+	//border-left: 1px solid red;
+	
 	&_m {
 		max-width: 1000px;
 	}
@@ -230,11 +234,13 @@ body {
 	text-align: center;
 	font-size: 26px;
 	font-family: $ptFamily;
+	
 	h3 {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
+	
 	span {
 		display: block;
 		font-size: 43px;
@@ -247,17 +253,19 @@ body {
 	border: 1px solid #d1d1d1;
 	border-radius: 20px;
 	overflow: hidden;
-	margin-bottom: 30px;
 	width: 100%;
+	
 	&.error {
 		border-color: red;
 	}
+	
 	input {
 		width: 100%;
 		padding: 15px;
 		border: none;
 		outline: none;
 		font-size: 16px;
+		
 		&::placeholder {
 			opacity: 0.3;
 		}
@@ -270,6 +278,7 @@ body {
 	overflow: hidden;
 	margin-bottom: 30px;
 	width: 100%;
+	
 	textarea {
 		width: 100%;
 		padding: 15px;
@@ -277,6 +286,7 @@ body {
 		outline: none;
 		resize: none;
 		font-size: 16px;
+		
 		&::placeholder {
 			opacity: 0.3;
 		}
@@ -289,6 +299,7 @@ body {
 	font-weight: 700;
 	font-family: $ptFamily;
 	margin-bottom: 50px;
+	
 	&_left {
 		text-align: left;
 	}
@@ -296,6 +307,7 @@ body {
 
 .section {
 	padding: 75px 0;
+	
 	&_bb {
 		border-bottom: 1px solid var(--section-border-light)
 	}
@@ -306,39 +318,55 @@ body {
 	color: var(--white);
 	width: max-content;
 	text-transform: uppercase;
+	box-shadow: none;
+	border: none;
+	transition: background-color .3s linear;
 	a {
 		padding: 20px 80px;
 		color: inherit;
 	}
+	
 	&_accent {
-		
 		background-color: var(--accent-color);
-		
+		&:hover {
+			background-color: var(--accent-color-hover);
+		}
+	}
+	
+	&_general {
+		background-color: var(--general-color);
+		&:hover {
+			background-color: var(--general-color-hover);
+		}
 	}
 }
 
 .bg {
 	&_circle {
 		position: relative;
+		
 		&::before {
 			content: '';
 			position: absolute;
-			width: 700%;
-			height: 700%;
+			width: 700vw;
+			height: 700vw;
 			bottom: 0;
 			border-radius: 50%;
 			left: calc(-350% + 100vw / 2);
 			z-index: -1;
 		}
 	}
+	
 	&_circle-green {
 		&::before {
 			background-color: #dff9db;
 		}
 	}
+	
 	&_green {
 	
 	}
+	
 	&_blue {
 		background-color: var(--bg-blue);
 	}
@@ -346,5 +374,39 @@ body {
 
 .progress-circle {
 
+}
+
+.socials {
+	gap: 20px;
+	margin-right: 60px;
+	
+	&__vk,
+	&__tg,
+	&__yt {
+		border-radius: 50%;
+		background-color: $accentColor;
+		width: 42px;
+		height: 42px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: bacgkround-color .3s linear;
+		
+		&:hover {
+			background-color: rgba($accentColor, .8);
+		}
+		
+		svg {
+			fill: white;
+			width: 50%;
+			max-height: 100%;
+		}
+	}
+	
+	&__tg {
+		svg {
+			width: 18px;
+		}
+	}
 }
 
