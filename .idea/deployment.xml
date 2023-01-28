@@ -2,14 +2,14 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="arhimedTest">
+      <paths name="dremaTest">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="dremaTest">
+      <paths name="first-top">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="firsttop.beget.tech" id="82a5793e-2ca8-49c4-ab75-3d3d4a6e8505" port="22" nameFormat="DESCRIPTIVE" username="firsttop" useOpenSSHConfig="true" />
+    </configs>
+  </component>
+</project>
