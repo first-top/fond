@@ -727,6 +727,10 @@ div[data-modal-name="vacancy"] {
 	align-items: center;
 	justify-content: center;
 	background-color: var(--accent-color);
+	transition: background-color .3s linear;
+	&:hover {
+		background-color: var(--accent-color-hover);
+	}
 	svg {
 		width: 18px;
 		height: 16px;

@@ -660,6 +660,10 @@ div[data-modal-name=vacancy] .btn {
   align-items: center;
   justify-content: center;
   background-color: var(--accent-color);
+  transition: background-color 0.3s linear;
+}
+.default-arrow:hover {
+  background-color: var(--accent-color-hover);
 }
 .default-arrow svg {
   width: 18px;
@@ -1461,6 +1465,26 @@ div[data-modal-name=vacancy] .btn {
   cursor: pointer;
 }
 
+.links-intro {
+  padding-bottom: 30px;
+}
+
+.links-content {
+  padding-top: 30px;
+}
+.links-content ul a {
+  font-size: 16px;
+}
+.links-content ul a:hover {
+  text-decoration: underline;
+}
+.links-content ul a {
+  margin-bottom: 5px;
+}
+.links-content ul ul {
+  padding-left: 20px;
+}
+
 .breadcrumbs {
   font-size: 12px;
   display: flex;
@@ -1711,6 +1735,11 @@ div[data-modal-name=vacancy] .btn {
 }
 .document-license__item:hover .document-license__item-hover {
   opacity: 1;
+}
+.document-license__item img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 .document-license__item-hover {
   position: absolute;
@@ -2030,6 +2059,9 @@ div[data-modal-name=vacancy] .btn {
   position: relative;
   z-index: 2;
 }
+.information-intro__description {
+  line-height: 1.6;
+}
 .information-intro__pictures {
   bottom: 40px;
 }
@@ -2318,12 +2350,173 @@ div[data-modal-name=vacancy] .btn {
   box-sizing: border-box;
 }
 
+.address-intro {
+  padding-bottom: 80px;
+}
+
+.static-range {
+  position: relative;
+  margin-top: -5px;
+}
+.static-range *,
+.static-range *::after,
+.static-range *::before {
+  box-sizing: border-box;
+}
+.static-range__placeholder {
+  background-color: #33a5d2;
+  height: 5px;
+  width: 100%;
+  border-radius: 2px;
+  position: relative;
+  z-index: 2;
+}
+.static-range__placeholder--disabled {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  left: 0;
+  top: 0;
+  border-radius: 2px;
+  background-color: #1e4c85;
+  opacity: 0.8;
+  z-index: 1;
+}
+.static-range__placeholder--disabled::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #1e4c85;
+}
+.static-range__markers-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+.static-range__marker {
+  position: relative;
+  cursor: pointer;
+}
+.static-range__marker::before, .static-range__marker::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  display: block;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  transition: border-width 0.3s linear, background-color 0.3s linear;
+}
+.static-range__marker::before {
+  background-color: #183e6d;
+}
+.static-range__marker::after {
+  border: 2px solid white;
+}
+.static-range__marker.current::before {
+  background-color: white;
+}
+.static-range__marker.current::after {
+  border: 6px solid #33a5d2;
+}
+.static-range__marker.disabled {
+  pointer-events: none;
+}
+.static-range__marker.disabled::before {
+  background-color: rgba(30, 76, 133, 0.8);
+}
+.static-range__marker-value {
+  position: absolute;
+  top: -30px;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.custom-range-subsystem-title {
+  top: 40px;
+}
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .custom-range-subsystem-title {
+    left: -10px;
+  }
+}
+@media (max-width: 1024px) {
+  .custom-range-subsystem-title {
+    left: -10px;
+  }
+}
+
+@media (max-width: 1200px) {
+  div.ui-tabs-panel:not(#calc-6) .col-slider__different-subsystem {
+    right: 0;
+  }
+}
+@media (max-width: 768px) {
+  div.ui-tabs-panel:not(#calc-6) .col-slider__different-subsystem {
+    right: 25px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+  div#calc-6 .col-slider__different-subsystem {
+    right: auto;
+    left: -10px;
+    top: 65px;
+  }
+}
+@media (max-width: 1024px) {
+  div#calc-6 .col-slider__different-subsystem {
+    right: -10px;
+  }
+}
+@media (max-width: 768px) {
+  div#calc-6 .col-slider__different-subsystem {
+    right: 35px;
+    top: 70px;
+  }
+}
+@media (max-width: 480px) {
+  div#calc-6 .col-slider__different-subsystem {
+    right: auto;
+    left: 35px;
+    top: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  div.ui-tabs-panel:not(#calc-6) .calc-users {
+    padding-bottom: 40px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .calc-users {
+    padding-bottom: 50px;
+  }
+}
+@media (max-width: 480px) {
+  .calc-users {
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .subsystem-user-count {
+    left: 5px;
+  }
+}
+
 @media (max-width: 1350px) {
   .home-friends .swiper-pagination {
     display: block;
   }
   .home-friends .swiper-button-prev,
-.home-friends .swiper-button-next {
+  .home-friends .swiper-button-next {
     display: none;
   }
 }
@@ -2344,8 +2537,8 @@ div[data-modal-name=vacancy] .btn {
     opacity: 0.5;
   }
   .information-help__slider .swiper-button-prev,
-.information-help__slider .swiper-button-next, .interesting__slider .swiper-button-prev,
-.interesting__slider .swiper-button-next {
+  .information-help__slider .swiper-button-next, .interesting__slider .swiper-button-prev,
+  .interesting__slider .swiper-button-next {
     display: none;
   }
   .information-help__slider .swiper-pagination, .interesting__slider .swiper-pagination {

@@ -46,11 +46,17 @@
 		box-shadow: 0 27px 0 -22px var(--circle-bg);
 		transition: box-shadow .3s linear;
 		position: relative;
+		
 		&:hover {
 			box-shadow: 0 27px 0 -22px var(--license-shadow-hover);
 			.document-license__item-hover {
 				opacity: 1;
 			}
+		}
+		img {
+			object-fit: cover;
+			height: 100%;
+			width: 100%;
 		}
 	}
 	&__item-hover {

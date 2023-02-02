@@ -95,6 +95,7 @@
     </header>
     <main>
       <section class="vacancy-intro bg_circle-green bg_circle">
+        <div class="container">
         <div class="breadcrumbs">
           <nav>
             <ul class="flex-body">
@@ -109,6 +110,7 @@
               </li>
             </ul>
           </nav>
+        </div>
         </div>
         <div class="container container_m">
           <div class="page-intro-content">
@@ -419,14 +421,14 @@
                 Оставьте свой адрес, чтобы получать от нас актуальные новости, не чаще чем 1 раз в месяц.
               </div>
               <div class="dispatch__form">
-                <form class="flex-body">
+                <form class="flex-body" name="dispatch-form">
                   <div class="dispatch__input form-input">
                     <label for="dispatch-mail"></label>
                     <input
                       id="dispatch-mail"
                       type="text"
                       placeholder="Ваша электронная почта"
-                      name="dispatch-mail">
+                      name="mail">
               
                   </div>
                   <div class="dispatch__button">
@@ -773,6 +775,13 @@
     </div>
   </div>
   <div class="modal modal-bg flex-body" data-modal-name="success-vacancy">
+    <div class="modal__body">
+      <div class="modal__title">
+        Спасибо за заявку
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-bg flex-body" data-modal-name="success">
     <div class="modal__body">
       <div class="modal__title">
         Спасибо за заявку

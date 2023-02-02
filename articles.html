@@ -31,7 +31,7 @@
   <link
     rel="stylesheet"
     href="styles/style.css">
-  <title>Информация</title>
+  <title>Document</title>
 </head>
 <body>
 <div class="wrapper">
@@ -95,6 +95,7 @@
     </header>
     <main>
       <section class="articles-intro bg_circle-blue bg_circle">
+        <div class="container">
         <div class="breadcrumbs">
           <nav>
             <ul class="flex-body">
@@ -109,6 +110,7 @@
               </li>
             </ul>
           </nav>
+        </div>
         </div>
         <div class="container container_m">
           <div class="page-intro-content">
@@ -305,15 +307,15 @@
                 Оставьте свой адрес, чтобы получать от нас актуальные новости, не чаще чем 1 раз в месяц.
               </div>
               <div class="dispatch__form">
-                <form class="flex-body">
+                <form class="flex-body" name="dispatch-form">
                   <div class="dispatch__input form-input">
                     <label for="dispatch-mail"></label>
                     <input
                       id="dispatch-mail"
                       type="text"
                       placeholder="Ваша электронная почта"
-                      name="dispatch-mail">
-                  
+                      name="mail">
+              
                   </div>
                   <div class="dispatch__button">
                     <button class="btn btn_accent">подписаться</button>
@@ -330,7 +332,7 @@
             <div class="dispatch__picture">
               <img src="img/dispatch.svg" alt="">
             </div>
-          
+      
           </div>
         </div>
       </section>
@@ -622,6 +624,13 @@
             </div>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-bg flex-body" data-modal-name="success">
+    <div class="modal__body">
+      <div class="modal__title">
+        Спасибо за заявку
       </div>
     </div>
   </div>

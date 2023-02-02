@@ -241,40 +241,37 @@ window.addEventListener("DOMContentLoaded", () => {
         data, hasError
       }
     },
-    sendData(formName, event) {
+    sendData(formName, urlString, event) {
       event.preventDefault();
       this.formName = formName
-      const url = "string url"
+      const url = urlString !== "url" ? urlString : "url"
+      console.log("url-", url)
       const {data, hasError} = this.getFormData(formName)
       if (hasError) {
         console.log("error")
         return false
       } else {
         console.log("clean")
-        this.showSuccessModal()
+        if (url !== "url" ) {
+          fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data)
+          }).then(res => res.json()).then(data => {
+            console.log(data)
+            if (!data?.error) {
+              this.showSuccessModal()
+            }
+          })
+          console.log(data)
+        } else {
+          // delete after add backend
+          this.showSuccessModal()
+        }
+        
         // this.showSuccessVacancyBind()
         // setTimeout(, 3000)
       
-        // fetch(url, {
-        //   method: "POST",
-        //   body: JSON.stringify(formData)
-        // }).then(res => res.json()).then(data => {
-        //   console.log(data)
-        //   if (!data?.error) {
-        //     successForm.style.display = "flex"
-        //     for (let key in formData) {
-        //       if (formData.hasOwnProperty(key)) {
-        //         formData[key] = "";
-        //         const input = document.querySelector(`[name="${key}"]`)
-        //         input.value = ""
-        //       }
-        //     }
-        //     setTimeout(() => {
-        //       successForm.style.display = "none"
-        //     }, 2000)
-        //   }
-        // })
-        // console.log(data)
+        
       }
     },
     cleanForm(formName) {
@@ -396,7 +393,19 @@ window.addEventListener("DOMContentLoaded", () => {
         return false
       } else {
         console.log("clean")
-        this.showSuccessVacancyBind()
+        if (url !== "string url") {
+          fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data)
+          }).then(res => res.json()).then(data => {
+            console.log(data)
+            if (!data?.error) {
+              this.showSuccessVacancyBind()
+            }
+          })
+        } else {
+          this.showSuccessVacancyBind()
+        }
         // setTimeout(, 3000)
       
         // fetch(url, {
@@ -468,7 +477,17 @@ window.addEventListener("DOMContentLoaded", () => {
     form: document.forms["friends-form"],
     init() {
       if (this.form) {
-        this.form.addEventListener("submit", formUtils.sendData.bind(formUtils, "friends-form"))
+        this.form.addEventListener("submit", formUtils.sendData.bind(formUtils, "friends-form", "url"))
+      }
+    }
+  }
+  
+  const dispatchForm = {
+    form: document.forms["dispatch-form"],
+    init() {
+      console.log(this.form)
+      if (this.form) {
+        this.form.addEventListener("submit", formUtils.sendData.bind(formUtils, "dispatch-form", "url"))
       }
     }
   }
@@ -504,109 +523,61 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
   
+  
+  
+  const params = {
+    values: [1, 234],
+    range: document.querySelector(".static-range"),
+    slide: true
+  }
+  
+  
+  
+  const staticRange = new K1StaticRange(params);
+  
+  // console.log(staticRange)
+  staticRange.init()
+  
+  staticRange.range.addEventListener("afterChange", function () {
+    console.log("change")
+    // const currentValue = staticRange.getCurrentValue()
+    // const currentSubSystem = staticRange.range.getAttribute("data-subsystem")
+    //
+    // if (currentSubSystem) {
+    //   userSubSystemCounts[currentSubSystem].count = currentValue
+    //   activeContent.querySelector(".subsystem-user-count input[name=" + currentSubSystem + "]").value = userSubSystemCounts[currentSubSystem].count
+    //
+    // } else {
+    //   for (let elem in userSubSystemCounts) {
+    //     userSubSystemCounts[elem].count = currentValue
+    //   }
+    // }
+    //
+    //
+    // if (userSubsystemCountNode.querySelector("input").checked) {
+    //   getCurrentUsers(currentValue)
+    // } else {
+    //   setCustomUsersPrices(currentValue, currentSubSystem)
+    //   setCustomCountUserResult()
+    //
+    //
+    //   setMaxMainCount(currentSubSystem)
+    //
+    // }
+    
+  })
+  
+  
+  
+  
+  
   articleMainPicture.init()
   friendsForm.init()
+  dispatchForm.init()
   toggle.init();
   modal.init()
   headerActions.init()
   circleProgress.init()
 
 
-//   const formData = {
-//     name: '',
-//     email: '',
-//     phone: '',
-//     question: ''
-//   }
-//
-//   const form  = document.querySelector(".form form")
-//   const url = "/ajax/sendForm.php"
-//   const successForm = document.querySelector(".k1-modal.success")
-//
-//   function validatePhone(value) {
-//     const reg = new RegExp(/\D/g)
-//     return value.replace(reg, "").length >= 10
-//   }
-//
-//   function validateEmail(value) {
-//     const reg = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-//     return reg.test(value)
-//   }
-//
-//   function validateFields() {
-//     let hasError = false
-//     for(let key in formData) {
-//       if (formData.hasOwnProperty(key)) {
-//         const node = document.querySelector(`[name="${key}"]`).closest("div")
-//         node.classList.remove("error")
-//         if (key === "phone") {
-//           const validPhone = validatePhone(formData[key])
-//           if (validPhone) node.classList.remove("error")
-//           else {
-//             node.classList.add("error")
-//             hasError = true
-//           }
-//         }
-//         if (key === "email") {
-//           const validEmail = validateEmail(formData[key])
-//           if (validEmail) node.classList.remove("error")
-//           else {
-//             node.classList.add("error")
-//             hasError = true
-//           }
-//         }
-//         if (!formData[key]) {
-//           node.classList.add("error")
-//           hasError = true
-//         }
-//       }
-//     }
-//     return hasError
-//   }
-//
-//   function sendData() {
-//     fetch(url, {
-//       method: "POST",
-//       body: JSON.stringify(formData)
-//     }).then(res => res.json()).then(data => {
-//       console.log(data)
-//       if (!data?.error) {
-//         successForm.style.display = "flex"
-//         for(let key in formData) {
-//           if (formData.hasOwnProperty(key)) {
-//             formData[key] = "";
-//             const input = document.querySelector(`[name="${key}"]`)
-//             input.value = ""
-//           }
-//         }
-//         setTimeout(() => {
-//           successForm.style.display = "none"
-//         }, 2000)
-//       }
-//     })
-//     // const data = res.json()
-//   }
-//
-//   for(let key in formData) {
-//     if (formData.hasOwnProperty(key)) {
-//       const field = document.querySelector(`[name="${key}"]`)
-//       formData[key] = field.value
-//       if (key === "phone") {
-//         const mask = new PhoneMask({mask: "+7 (xxx) xxx xx xx"})
-//       }
-//       field.addEventListener("input", ({target}) => {
-//         if (target.value) field.closest("div").classList.remove("error")
-//         formData[key] = target.value
-//       })
-//     }
-//   }
-//
-//   form.addEventListener("submit", event => {
-//     event.preventDefault()
-//     if (validateFields()) return false
-//     sendData()
-//   })
-//
-//
-//
 })

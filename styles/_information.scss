@@ -6,6 +6,9 @@
 		position: relative;
 		z-index: 2;
 	}
+	&__description {
+		line-height: 1.6;
+	}
 	&__pictures {
 		bottom: 40px;
 	}
