@@ -284,6 +284,50 @@ body {
 	}
 }
 
+.form-radio {
+	
+	input {
+		opacity: 0;
+		visibility: hidden;
+		appearance: none;
+		&:checked + label {
+			&::before {
+				background-color: var(--white);
+			}
+			&::after {
+				border-color: var(--accent-color);
+			}
+		}
+	}
+	label {
+		padding-left: 40px;
+		position: relative;
+		cursor: pointer;
+		&::before, &::after {
+			content: "";
+			display: block;
+			position: absolute;
+			left: 0;
+			top: -4px;
+			width: 24px;
+			height: 24px;
+			border-radius: 50%;
+			overflow: hidden;
+		}
+		&::before {
+			background-color: var(--circle-bg);
+			transition: background-color .1s linear;
+			z-index: 1;
+		}
+		&::after {
+			border: 6px solid transparent;
+			transition: border-color .1s linear;
+			z-index: 2;
+		}
+		
+	}
+}
+
 .form-textarea {
 	border: 1px solid #d1d1d1;
 	border-radius: 20px;
@@ -335,10 +379,16 @@ body {
 	transition: background-color .3s linear;
 	font-size: 18px;
 	
-	a {
+	a, button {
 		padding: 20px 80px;
 		color: inherit;
 		font-size: 18px;
+		border: none;
+		background-color: transparent;
+		border-radius: 30px;
+		&:hover {
+			cursor: pointer;
+		}
 	}
 	
 	&_accent {

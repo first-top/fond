@@ -18,12 +18,12 @@
 		margin: 0 auto 20px;
 		transform: rotate(-90deg);
 		&::before {
+			display: none;
 			content: '';
 			width: 130px;
 			height: 130px;
 			border-radius: 50%;
 			background-color: var(--circle-bg);
-			display: block;
 			position: absolute;
 			left: 3px;
 			top: 3px;
@@ -104,8 +104,16 @@
 .progress-circle circle {
 	
 	stroke-width: 5px;
-	stroke: var(--accent-color);
 	fill: transparent;
+		position: relative;
+	&.current {
+		stroke: var(--accent-color);
+		z-index: 2;
+	}
+	&.placeholder {
+		stroke: var(--circle-bg);
+		z-index: 1;
+	}
 	
 }
 

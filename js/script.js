@@ -156,7 +156,7 @@ window.addEventListener("DOMContentLoaded", () => {
     init() {
       this.circles.forEach(circle => {
         const percent = circle.getAttribute("data-percent")
-        const picture = circle.querySelector("circle")
+        const picture = circle.querySelector("circle.current")
         const radius = picture.r.baseVal.value
         const length = 2 * Math.PI * radius
         picture.style.strokeDasharray = `${length} ${length}`
@@ -485,7 +485,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const dispatchForm = {
     form: document.forms["dispatch-form"],
     init() {
-      console.log(this.form)
       if (this.form) {
         this.form.addEventListener("submit", formUtils.sendData.bind(formUtils, "dispatch-form", "url"))
       }
@@ -523,54 +522,134 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
   
-  
-  
-  const params = {
-    values: [1, 234],
-    range: document.querySelector(".static-range"),
-    slide: true
+  const ageInputs = {
+    min: document.querySelector("input[name='age-from']"),
+    max: document.querySelector("input[name='age-to']"),
   }
   
   
+  const costInputs = {
+    min: document.querySelector("input[name='cost-from']"),
+    max: document.querySelector("input[name='cost-to']"),
+  }
   
-  const staticRange = new K1StaticRange(params);
-  
-  // console.log(staticRange)
-  staticRange.init()
-  
-  staticRange.range.addEventListener("afterChange", function () {
-    console.log("change")
-    // const currentValue = staticRange.getCurrentValue()
-    // const currentSubSystem = staticRange.range.getAttribute("data-subsystem")
-    //
-    // if (currentSubSystem) {
-    //   userSubSystemCounts[currentSubSystem].count = currentValue
-    //   activeContent.querySelector(".subsystem-user-count input[name=" + currentSubSystem + "]").value = userSubSystemCounts[currentSubSystem].count
-    //
-    // } else {
-    //   for (let elem in userSubSystemCounts) {
-    //     userSubSystemCounts[elem].count = currentValue
-    //   }
-    // }
-    //
-    //
-    // if (userSubsystemCountNode.querySelector("input").checked) {
-    //   getCurrentUsers(currentValue)
-    // } else {
-    //   setCustomUsersPrices(currentValue, currentSubSystem)
-    //   setCustomCountUserResult()
-    //
-    //
-    //   setMaxMainCount(currentSubSystem)
-    //
-    // }
+  if (ageInputs.min && ageInputs.max) {
+    ageInputs.min.value = ageInputs.min.getAttribute("data-v").replace(/\D/g, "")
+    ageInputs.max.value = ageInputs.max.getAttribute("data-v").replace(/\D/g, "")
+    const params = {
+      values: [
+        ageInputs.min.getAttribute("data-v"),
+        ageInputs.max.getAttribute("data-v")
+      ],
+      current: [
+        ageInputs.min.value,
+        ageInputs.max.value
+      ],
+      range: document.querySelector(".static-range-age"),
+      slide: true
+    }
     
-  })
+    const ageRange = new K1StaticRange(params);
+    ageInputs.min.addEventListener("input", ageRange.setCurrentValue.bind(ageRange))
+    ageInputs.max.addEventListener("input", ageRange.setCurrentValue.bind(ageRange))
+    ageRange.init()
+    
+    ageRange.range.addEventListener("afterChange", function () {
+      const values = ageRange.getCurrentValue()
+      ageInputs.min.value = values.min.value
+      ageInputs.max.value = values.max.value
+    })
+    
+  }
+  
+  if (costInputs.min && costInputs.max) {
+    costInputs.min.value = costInputs.min.getAttribute("data-v").replace(/\D/g, "")
+    costInputs.max.value = costInputs.max.getAttribute("data-v").replace(/\D/g, "")
+    const params = {
+      values: [
+        +costInputs.min.getAttribute("data-v").replace(/\D/g, ""),
+        +costInputs.max.getAttribute("data-v").replace(/\D/g, "")
+      ],
+      current: [
+        +costInputs.min.value.replace(/\D/g, ""),
+        +costInputs.max.value.replace(/\D/g, "")
+      ],
+      range: document.querySelector(".static-range-cost"),
+      slide: true
+    }
+    
+    
+    
+    const costRange = new K1StaticRange(params);
+    costInputs.min.addEventListener("input", costRange.setCurrentValue.bind(costRange))
+    costInputs.max.addEventListener("input", costRange.setCurrentValue.bind(costRange))
+    costRange.init()
+
+    costRange.range.addEventListener("afterChange", function () {
+      const values = costRange.getCurrentValue()
+      costInputs.min.value = values.min.value
+      costInputs.max.value = values.max.value.toLocaleString()
+    })
+    
+    const b = document.querySelector(".static-range-cost")
+    
+    window.addEventListener("resize", function() {
+      // console.log(b.clientWidth)
+      // costRange.getPlaceholder().style.width = `${b.clientWidth}px`
+    })
+  
+  }
+  
+  const selectCustom = {
+    elements: document.querySelectorAll(".select-custom"),
+    valueHandler() {},
+    toggleList({target}) {
+      const block = target.closest(".select-custom")
+      block.classList.toggle("opened")
+      if (block.classList.contains("opened")) {
+        this.listBlock.style.maxHeight = `${this.list.scrollHeight + 2}px`
+      } else {
+        this.listBlock.style.maxHeight = `0px`
+      }
+      
+    },
+    closeList() {
+      this.listBlock.closest(".select-custom").classList.remove("opened")
+      this.listBlock.style.maxHeight = `0px`
+    },
+    chooseValue({target}) {
+      const value = target.textContent
+      this.label.style.opacity = `0`
+      this.input.value = value
+      this.closeList()
+    },
+    init() {
+      if (this.elements.length ) {
+        this.elements.forEach(elem => {
+          
+          const toggleNode = elem.querySelector(".select-custom__value")
+          this.listBlock = elem.querySelector(".select-custom__list")
+          this.list = this.listBlock.querySelector("ul")
+          this.listItems = this.list.querySelectorAll("li")
+          this.label = toggleNode.querySelector("label")
+          this.input = toggleNode.querySelector("input")
+          this.input.value = ""
+          const chooseBind = this.chooseValue.bind(this)
+          this.listItems.forEach(li => {
+            li.addEventListener("click", chooseBind)
+          })
+          const toggleBind = this.toggleList.bind(this)
+          toggleNode.addEventListener("click", toggleBind)
+        })
+      }
+    }
+  }
+  
+  // window.addEventListener("click", ({target}) =>  {
+  //   console.log(target)})
   
   
-  
-  
-  
+  selectCustom.init()
   articleMainPicture.init()
   friendsForm.init()
   dispatchForm.init()
