@@ -182,14 +182,10 @@
 			flex: 1.5
 		}
 		&__prices {
-			//ul.grid-body {
-			//	display: grid;
-			//	grid-template-columns: repeat(2, 1fr);
-			//}
 			
 		}
 		&__method {
-			ul {
+			.card__variants {
 				flex-direction: column;
 				align-items: flex-start;
 			}
@@ -479,7 +475,7 @@
 			}
 		}
 		&__method {
-			ul {
+			.card__variants {
 				flex-direction: row;
 				align-items: flex-start;
 			}
@@ -498,7 +494,7 @@
 			flex-wrap: wrap;
 			max-width: 500px;
 			width: 100%;
-			margin: 0 auto;
+			margin: 0 auto 20px;
 		}
 		
 		&__col {
@@ -928,10 +924,57 @@
 	}
 	.card {
 		&__method {
-			ul {
+			.card__variants {
 				flex-direction: column;
 				align-items: flex-start;
 			}
+		}
+		&__custom-cost-body {
+			flex-direction: column;
+			row-gap: 15px;
+		}
+	}
+	.help-form {
+		.card {
+			&__credit-row {
+				flex-direction: column;
+			}
+			&__bottom {
+				gap: 20px;
+			}
+			&__police {
+				text-align: center;
+			}
+		}
+		&__button {
+			max-width: 300px;
+			margin: 0 auto;
+		}
+	}
+	.nf {
+		&__content {
+			font-size: 170px;
+		}
+		&__picture {
+			max-width: 60px;
+			bottom: 3px;
+			left: calc(50% - 26px);
+		}
+	}
+	.search-form {
+		margin-bottom: 40px;
+		form {
+			flex-direction: column;
+			align-items: center;
+			row-gap: 30px;
+		}
+		&__input {
+			width: 100%;
+		}
+	}
+	.search-result {
+		&__item {
+			padding: 20px 0;
 		}
 	}
 	.grid-body {

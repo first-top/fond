@@ -84,7 +84,9 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   })
-  
+  /*
+  * Выпадающие окна их шапки сайта (меню и поиск)
+  * */
   const headerActions = {
     menuButton: document.querySelector(".header-toggle-button-menu"),
     toggleMenuNode: document.querySelector(".header-toggle-menu"),
@@ -150,7 +152,9 @@ window.addEventListener("DOMContentLoaded", () => {
       this.addHandlers()
     }
   }
-  
+  /*
+  * Кружки вокруг фото с прогрессом сбора
+  * */
   const circleProgress = {
     circles: document.querySelectorAll(".progress-circle"),
     init() {
@@ -164,7 +168,9 @@ window.addEventListener("DOMContentLoaded", () => {
       })
     }
   }
-  
+  /*
+  * Некоторые обработчики форм
+  * */
   const formUtils = {
     formName: "",
     isValidatePhone(value) {
@@ -196,7 +202,7 @@ window.addEventListener("DOMContentLoaded", () => {
       let hasError = false
       for (let pair of formData.entries()) {
         if (pair[0] === "offer") {
-            const area = form.querySelector("[name='offer']").closest("div")
+          const area = form.querySelector("[name='offer']").closest("div")
           if (!pair[1].length) {
             hasError = true
             area.classList.add("error")
@@ -252,7 +258,7 @@ window.addEventListener("DOMContentLoaded", () => {
         return false
       } else {
         console.log("clean")
-        if (url !== "url" ) {
+        if (url !== "url") {
           fetch(url, {
             method: "POST",
             body: JSON.stringify(data)
@@ -264,14 +270,8 @@ window.addEventListener("DOMContentLoaded", () => {
           })
           console.log(data)
         } else {
-          // delete after add backend
           this.showSuccessModal()
         }
-        
-        // this.showSuccessVacancyBind()
-        // setTimeout(, 3000)
-      
-        
       }
     },
     cleanForm(formName) {
@@ -285,12 +285,14 @@ window.addEventListener("DOMContentLoaded", () => {
       const modal = document.querySelector(".modal[data-modal-name='success']")
       modal.classList.add("opened")
       this.cleanForm(this.formName)
-      setTimeout(function() {
+      setTimeout(function () {
         modal.classList.remove("opened")
       }, 2000)
     }
   }
-  
+  /*
+  * Модалки
+  * */
   const modal = {
     bodyNode: document.querySelector("body"),
     modalBackArray: document.querySelectorAll(".modal-bg"),
@@ -343,7 +345,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
       }
     },
-
+    
     getVacancyData() {
       const form = document.forms["vacancy-form"]
       const formData = new FormData(form)
@@ -407,7 +409,7 @@ window.addEventListener("DOMContentLoaded", () => {
           this.showSuccessVacancyBind()
         }
         // setTimeout(, 3000)
-      
+        
         // fetch(url, {
         //   method: "POST",
         //   body: JSON.stringify(formData)
@@ -427,7 +429,7 @@ window.addEventListener("DOMContentLoaded", () => {
         //     }, 2000)
         //   }
         // })
-      // console.log(data)
+        // console.log(data)
       }
     },
     showSuccessVacancy() {
@@ -435,7 +437,7 @@ window.addEventListener("DOMContentLoaded", () => {
       this.currentModal.classList.remove("opened")
       // this.currentModal = null
       modalSuccess.classList.add("opened")
-      setTimeout(function() {
+      setTimeout(function () {
         modalSuccess.classList.remove("opened")
       }, 2000)
       
@@ -452,7 +454,9 @@ window.addEventListener("DOMContentLoaded", () => {
       this.addListeners()
     }
   }
-  
+  /*
+  * Выпадашки с контентом (например на странице вакансий)
+  * */
   const toggle = {
     titles: document.querySelectorAll(".toggle-title"),
     toggle({target}) {
@@ -472,7 +476,9 @@ window.addEventListener("DOMContentLoaded", () => {
       })
     }
   }
-  
+  /*
+  * Форма "стать другом"
+  * */
   const friendsForm = {
     form: document.forms["friends-form"],
     init() {
@@ -481,7 +487,9 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-  
+  /*
+  * Форма подписки
+  * */
   const dispatchForm = {
     form: document.forms["dispatch-form"],
     init() {
@@ -490,7 +498,9 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-  
+  /*
+  * Описывает большую картинку на детальной странице статьи
+  * */
   const articleMainPicture = {
     picture: document.querySelector(".article-content__main-picture"),
     introBlock: document.querySelector(".article"),
@@ -521,13 +531,16 @@ window.addEventListener("DOMContentLoaded", () => {
       
     }
   }
-  
+  /*
+  * Ползунки возраста
+  * */
   const ageInputs = {
     min: document.querySelector("input[name='age-from']"),
     max: document.querySelector("input[name='age-to']"),
   }
-  
-  
+  /*
+  * Ползунки сумм
+  * */
   const costInputs = {
     min: document.querySelector("input[name='cost-from']"),
     max: document.querySelector("input[name='cost-to']"),
@@ -579,12 +592,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
     
     
-    
     const costRange = new K1StaticRange(params);
     costInputs.min.addEventListener("input", costRange.setCurrentValue.bind(costRange))
     costInputs.max.addEventListener("input", costRange.setCurrentValue.bind(costRange))
     costRange.init()
-
+    
     costRange.range.addEventListener("afterChange", function () {
       const values = costRange.getCurrentValue()
       costInputs.min.value = values.min.value
@@ -593,16 +605,19 @@ window.addEventListener("DOMContentLoaded", () => {
     
     const b = document.querySelector(".static-range-cost")
     
-    window.addEventListener("resize", function() {
+    window.addEventListener("resize", function () {
       // console.log(b.clientWidth)
       // costRange.getPlaceholder().style.width = `${b.clientWidth}px`
     })
-  
+    
   }
-  
+  /*
+  * Кастомный селект
+  * */
   const selectCustom = {
     elements: document.querySelectorAll(".select-custom"),
-    valueHandler() {},
+    valueHandler() {
+    },
     toggleList({target}) {
       const block = target.closest(".select-custom")
       block.classList.toggle("opened")
@@ -624,7 +639,7 @@ window.addEventListener("DOMContentLoaded", () => {
       this.closeList()
     },
     init() {
-      if (this.elements.length ) {
+      if (this.elements.length) {
         this.elements.forEach(elem => {
           
           const toggleNode = elem.querySelector(".select-custom__value")
@@ -645,10 +660,227 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
   
-  // window.addEventListener("click", ({target}) =>  {
-  //   console.log(target)})
+  /*
+  * Описывает поведение форм на страницах "Помочь фонду" и "Карточка ребенка"
+  * */
+  const helpForm = {
+    intervalInputs: document.querySelectorAll("input[name='pay-interval']"),
+    payMethodBlock: document.querySelector(".card__method"),
+    sendButtonCard: document.querySelector(".card__button"),
+    sendButton: document.querySelector(".help-form__button"),
+    costInput: document.querySelector("input[name='cost']"),
+    customCostInput: document.querySelector("input#custom-cost"),
+    cardPayBlock: document.querySelector(".card__credit"),
+    smsPayBlock: document.querySelector(".card__sms"),
+    /**/
+    costInputs: document.querySelectorAll("input[name='cost-radio']"),
+    payInputs: document.querySelectorAll("input[name='pay-radio']"),
+    /**/
+    
+    
+    
+    toggleSMSBlock(value) {
+      console.log(value)
+      if (value === "pay-sms" || value === "sms") {
+        this.cardPayBlock.classList.remove("opened")
+        this.smsPayBlock.classList.add("opened")
+      } else {
+        this.cardPayBlock.classList.add("opened")
+        this.smsPayBlock.classList.remove("opened")
+      }
+    },
+    getData() {
+      let hasError = false
+      
+      const data = {
+        interval: "",
+        cost: this.costInput.value,
+        method: "card",
+        name: document.querySelector("#pay-name").value,
+        email: ""
+      }
+      data.interval = [...this.intervalInputs].filter(input => input.checked)[0].value
+      const emailNode = document.querySelector("#pay-email")
+      const isValid = formUtils.isValidMail(emailNode.value)
+      if (!isValid) {
+        emailNode.closest(".form-input").classList.add("error")
+        hasError = true
+        emailNode.addEventListener("input", formUtils.inputHandler.bind(formUtils))
+      }
+      if (hasError) return false
+      return data
+    },
+    sendForm(formName, event) {
+      event.preventDefault()
+      const {data, hasError} = formUtils.getFormData(formName)
+      
+      
+      if (hasError) return
+      const url = "qwe";
+      if (url !== "qwe") {
+        fetch(url, {
+          method: "POST",
+          body: JSON.stringify(data)
+        }).then(res => res.json()).then(data => {
+          console.log(data)
+          if (!data?.error) {
+            this.showSuccessModal()
+          }
+        })
+      } else {
+        console.log(data)
+        formUtils.showSuccessModal()
+      }
+    },
+    togglePayMethodBlock(value) {
+      if (this.payMethodBlock)
+        this.payMethodBlock.style.display = value
+    },
+    
+    /**/
+    setCurrentCost(value) {
+      this.costInput.value = value
+    },
+    showCustomCost(value) {
+      const toggleBlock = document.querySelector(".card__custom-cost")
+      const body = toggleBlock.querySelector(".card__custom-cost-body")
+      if (value === "any") {
+        toggleBlock.style.maxHeight = `${body.scrollHeight}px`
+      } else {
+        toggleBlock.style.maxHeight = `0px`
+      }
+    },
+    setChosen(node) {
+      let value
+      if (!node) {
+        this.costInputs.forEach(input => {
+          input.closest(".card__radio").classList.remove("chosen")
+          if (input.checked) {
+            value = input.closest(".card__radio").value
+            input.closest(".card__radio").classList.add("chosen")
+            this.showCustomCost(input.value)
+          }
+        })
+        this.payInputs.forEach(input => {
+          input.closest(".card__radio").classList.remove("chosen")
+          if (input.checked) {
+            value = input.closest(".card__radio").value
+            input.closest(".card__radio").classList.add("chosen")
+          }
+        })
+      }
+      
+      if (node) {
+        const currentList = document.querySelectorAll(`input[name='${node.name}']`)
+        currentList.forEach(input => {
+          input.closest(".card__radio").classList.remove("chosen")
+        })
+        const parent = node.closest(".card__radio")
+        value = node.value
+        parent.classList.add("chosen")
+        if (node.name === "cost-radio") {
+          this.showCustomCost(node.value)
+        }
+        if (node.name === "pay-radio") {
+          this.toggleSMSBlock(node.value)
+        }
+      }
+      if (value) {
+        this.setCurrentCost(value)
+      }
+    },
+    /**/
+    
+    
+    init() {
+      const _this = this
+      if (this.intervalInputs.length) {
+        [...this.intervalInputs].filter(input => {
+          if (input.checked) {
+            switch (input.value) {
+              case "monthly":
+                _this.togglePayMethodBlock("none")
+                if (_this.sendButton) _this.sendButton.style.display = "block"
+                break
+              case "single":
+                _this.togglePayMethodBlock("block")
+                if (_this.sendButton) _this.sendButton.style.display = "block"
+                break
+              case "pay-sms":
+                if (_this.sendButton) _this.sendButton.style.display = "none"
+                break
+            }
+            this.toggleSMSBlock(input.value)
+          }
+          
+        })
+        this.intervalInputs.forEach(input => {
+          input.addEventListener("change", ({target}) => {
+            console.log("here", target.value)
+            switch (target.value) {
+              case "monthly":
+                _this.togglePayMethodBlock("none")
+                if (_this.sendButton) _this.sendButton.style.display = "block"
+                break
+              case "single":
+                _this.togglePayMethodBlock("block")
+                if (_this.sendButton) _this.sendButton.style.display = "block"
+                break
+              case "pay-sms":
+                if (_this.sendButton) _this.sendButton.style.display = "none"
+                break
+            }
+            this.toggleSMSBlock(target.value)
+            if (this.payInputs.length) {
+              this.payInputs.forEach(input => {
+                if (input.checked) {
+                  this.toggleSMSBlock(input.value)
+                }
+              })
+            }
+          })
+        })
+      }
+      if (this.sendButtonCard) {
+        this.sendButtonCard.addEventListener("click", this.sendForm.bind(this, "card-form"))
+      }
+      if (this.sendButton) {
+        this.sendButton.addEventListener("click", this.sendForm.bind(this, "help-fond"))
+      }
+      if (this.customCostInput) {
+        this.customCostInput.addEventListener("input", function () {
+          this.value = this.value.replace(/\D/g, "")
+          _this.costInput.value = this.value
+          console.log(_this.costInput)
+        })
+      }
+      /**/
+      if (this.costInputs.length) {
+        this.costInputs.forEach(input => {
+          input.addEventListener("change", ({target}) => {
+            _this.setChosen(target)
+          })
+        })
+        _this.setChosen(false)
+      }
+      if (this.payInputs.length) {
+        this.payInputs.forEach(input => {
+          input.addEventListener("change", ({target}) => {
+            _this.setChosen(target)
+          })
+          if (input.checked) {
+            this.toggleSMSBlock(input.value)
+          }
+        })
+        _this.setChosen(false)
+      }
+      /**/
+      
+      
+    }
+  }
   
-  
+  helpForm.init()
   selectCustom.init()
   articleMainPicture.init()
   friendsForm.init()
@@ -657,6 +889,6 @@ window.addEventListener("DOMContentLoaded", () => {
   modal.init()
   headerActions.init()
   circleProgress.init()
-
-
+  
+  
 })

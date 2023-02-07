@@ -122,7 +122,7 @@
             <div class="help-intro__description">
               <p>
                 “Движение к достижениям” это негосударственный благотворительный фонд. Мы работаем для помощи детям с
-                ДЦП и их родителям. Мы существуем благодаря вашей подждержке!
+                ДЦП и их родителям. Мы существуем благодаря вашей поддержке!
               </p>
             </div>
           </div>
@@ -130,6 +130,7 @@
       </section>
       <div class="container help-form">
         <div class="card__pay">
+          <form name="help-fond">
           <div class="card__block section_bb">
             <div class="card__interval flex-body">
               <div class="card__single">
@@ -144,17 +145,39 @@
                   <label for="monthly">Помогать ежемесячно</label>
                 </div>
               </div>
+              <div class="card__pay-sms">
+                <div class="form-radio">
+                  <input type="radio" id="sms" name="pay-interval" value="pay-sms">
+                  <label for="sms">Оплата с помощью СМС</label>
+                </div>
+              </div>
             </div>
           </div>
           <div class="card__block section_bb">
             <div class="card__pay-title">Сумма пожертвования</div>
-            <div class="card__prices card__variants ">
-              <ul class="grid-body grid-col-4 grid-col-xl-2 grid-col-l-4 grid-col-s-2 variants-js" data-variant="cost">
-                <li class="chosen">100 ₽</li>
-                <li>500 ₽</li>
-                <li>1 000 ₽</li>
-                <li class="variants-js-show">Другая сумма</li>
-              </ul>
+            <div class="card__prices card__variants grid-body grid-col-4 grid-col-xl-2 grid-col-l-4 grid-col-s-2">
+              <input type="hidden" value="100" name="cost">
+              <div class="card__radio ">
+                <label>100 ₽
+                  <input type="radio" checked name="cost-radio" value="100">
+                </label>
+              </div>
+              <div class="card__radio">
+                <label>500 ₽
+                  <input type="radio" name="cost-radio" value="500">
+                </label>
+              </div>
+              <div class="card__radio">
+                <label>1 000 ₽
+                  <input type="radio" name="cost-radio" value="1000">
+                </label>
+              </div>
+              <div class="card__radio">
+                <label>Другая сумма
+                  <input type="radio" name="cost-radio" value="any">
+                </label>
+              </div>
+              
             </div>
             <div class="card__custom-cost ">
               <div class="card__custom-cost-body  flex-body">
@@ -164,24 +187,6 @@
                   <input type="text" id="custom-cost" placeholder="0" name="custom-cost">
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="card__block card__method section_bb">
-            <div class="card__method-title card__pay-title">Способ оплаты</div>
-            <div class="card__variants">
-              <ul class="variants-js flex-body" data-variant="method">
-                <li class="chosen" data-tab="pay" data-target="pay-card"><span class="icon">
-                     <svg>
-                         <use xlink:href="img/icons/sprite.svg#card"></use>
-                     </svg>
-                   </span> Банковская
-                  карта</li>
-                <li data-target="pay-sms" data-tab="pay"><span class="icon">
-                     <svg>
-                         <use xlink:href="img/icons/sprite.svg#phone"></use>
-                     </svg>
-                   </span> Оплата по СМС</li>
-              </ul>
             </div>
           </div>
           <div class="card__block">
@@ -194,7 +199,7 @@
               </div>
               <div class="form-input">
                 <label for="pay-email"></label>
-                <input type="text" id="pay-email" name="email" placeholder="Ваш E-mail">
+                <input type="text" id="pay-email" name="mail" placeholder="Ваш E-mail">
               </div>
               </div>
              
@@ -204,18 +209,18 @@
               <p>Оплата СМС возможна при предоплатной системе расчетов с оператором связи.</p>
             </div>
           </div>
-          <div class="card__bottom grid-body grid-col-2">
+          <div class="card__bottom grid-body grid-col-2 grid-col-s-1">
             <div class="card__block card__police">
               <div>
               Производя пожертвование, вы соглашаетесь с <br>
               <a href="#">офертой</a> и <a href="#">политикой конфиденциальности</a>
               </div>
             </div>
-            <div class="card__button btn btn_general">
+            <div class="help-form__button btn btn_general">
               <button>Помочь</button>
             </div>
           </div>
-          
+          </form>
         </div>
       </div>
       <section class="section not-material">
@@ -225,7 +230,7 @@
               Нематериальная помощь фонду
             </h3>
           </div>
-          <div class="not-material__items grid-body grid-col-4">
+          <div class="not-material__items grid-body grid-col-4 grid-col-xl-3 grid-col-l-2  grid-col-s-1">
             <div class="not-material__item">
               <div class="not-material__icon">
                 <svg>

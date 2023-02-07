@@ -155,6 +155,11 @@ class K1StaticRange {
             _this.markersData.min.value = target.value = 0
           }
           const percent = _this.markersData.min.value / _this.maxValue * 100
+          const a = {
+            a: Math.round(percent),
+            b: Math.round(_this.markersData.max.percent)
+          }
+          console.log(_this.markersData, percent)
           _this.setMarkerPosition(_this.markers[0], percent)
         }
         if (type === "max") {
@@ -191,7 +196,13 @@ class K1StaticRange {
   }
   
   
-  moveHandler({x}) {
+  moveHandler(event) {
+    let x
+    if (event.type === "mousemove") {
+      x = event.x
+    } else if (event.type === "touchmove") {
+      x = event.touches[0].pageX
+    }
     const {x: rangeX, width} = this.getRangePosition()
     if (!this.currentMarker) return false
     const percent = (x - rangeX) / width * 100
@@ -243,6 +254,11 @@ class K1StaticRange {
         this.currentMarkerType = this.currentMarker.getAttribute("data-type")
         window.addEventListener("mousemove", this.moveHandlerBind)
       })
+      marker.addEventListener("touchstart", () => {
+        this.currentMarker = marker
+        this.currentMarkerType = this.currentMarker.getAttribute("data-type")
+        window.addEventListener("touchmove", this.moveHandlerBind)
+      })
       
       // marker.addEventListener("mousedown", this.clickHandlerBind)
       
@@ -280,6 +296,10 @@ class K1StaticRange {
       window.addEventListener("mouseup", () => {
         this.currentMarker = null
         window.removeEventListener("mousemove", this.moveHandlerBind)
+      })
+      window.addEventListener("touchend", () => {
+        this.currentMarker = null
+        window.removeEventListener("touchmove", this.moveHandlerBind)
       })
       this.markers[0].setAttribute("data-type", "min")
       this.markers[1].setAttribute("data-type", "max")

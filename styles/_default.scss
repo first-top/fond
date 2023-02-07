@@ -290,6 +290,7 @@ body {
 		opacity: 0;
 		visibility: hidden;
 		appearance: none;
+		display: none;
 		&:checked + label {
 			&::before {
 				background-color: var(--white);
@@ -681,6 +682,7 @@ body {
 	display: none;
 	justify-content: center;
 	align-items: center;
+	z-index: 10;
 	
 	&.opened {
 		display: flex;
@@ -816,4 +818,10 @@ div[data-modal-name="vacancy"] {
 			content: "..."
 		}
 	}
+}
+
+.menu-title {
+	font-weight: 500;
+	font-size: 18px;
+	margin-bottom: 25px;
 }
