@@ -201,6 +201,18 @@ window.addEventListener("DOMContentLoaded", () => {
       const data = {}
       let hasError = false
       for (let pair of formData.entries()) {
+        if (pair[0] === "form_text_1") {
+          const input = form.querySelector("[name='form_text_1']").closest(".form-input")
+          if (!this.isValidMail(pair[1])) {
+            input.classList.add("error")
+            hasError = true
+            input.addEventListener("input", this.inputHandler.bind(this))
+          } else {
+            input.classList.remove("error")
+            data[`${pair[0]}`] = pair[1]
+          }
+          continue
+        }
         if (pair[0] === "offer") {
           const area = form.querySelector("[name='offer']").closest("div")
           if (!pair[1].length) {
