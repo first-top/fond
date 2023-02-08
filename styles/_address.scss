@@ -107,6 +107,14 @@
 	}
 	&__card {
 		border: 1px solid #f2f2f2;
+		&:hover {
+			cursor: pointer;
+		}
+		&.saved {
+			.help-card__title {
+				margin-bottom: 0;
+			}
+		}
 	}
 	&__show-more {
 		margin: 60px auto 30px;

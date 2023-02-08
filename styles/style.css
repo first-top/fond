@@ -2123,6 +2123,111 @@ div[data-modal-name=vacancy] .btn {
   opacity: 0.5;
 }
 
+.news-page {
+  column-gap: 30px;
+  align-items: flex-start;
+}
+
+.news-list {
+  gap: 30px;
+  flex: 0 1 770px;
+  margin-bottom: 40px;
+}
+
+.news-aside {
+  flex: 0 1 370px;
+  width: 100%;
+}
+.news-aside__title {
+  padding: 25px 30px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.news-aside__sections {
+  border: 1px solid #f7f7f7;
+  border-radius: 10px;
+  margin-bottom: 60px;
+}
+.news-aside__sections-list li {
+  border-top: 1px solid #f7f7f7;
+}
+.news-aside__sections-list a {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.news-aside__sections-list a:hover {
+  text-decoration: underline;
+}
+.news-aside__sections-list .icon {
+  transform: rotate(180deg);
+  width: 24px;
+  height: 24px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+}
+.news-aside__sections-list .icon svg {
+  fill: var(--white);
+  max-width: 12px;
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.news-aside__card.help-card {
+  max-width: none;
+  width: 100%;
+  margin-bottom: 60px;
+  border: 1px solid #cae08f;
+}
+.news-aside__banner {
+  height: 425px;
+  background-color: #ededed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.news-aside__banner div {
+  opacity: 0.5;
+}
+
+.news-picture-detail {
+  height: 470px;
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 40px;
+}
+.news-picture-detail img {
+  width: 100%;
+  height: 100%;
+}
+
+.news-description-detail {
+  line-height: 1.6;
+}
+
+.news-detail-intro {
+  padding-bottom: 300px;
+}
+
+.news-content {
+  padding-top: 0;
+}
+
+.news-body {
+  margin-top: -320px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 2;
+}
+
 .help-card {
   background-color: var(--white);
   border-radius: 10px;
@@ -2430,19 +2535,19 @@ div[data-modal-name=vacancy] .btn {
   -webkit-line-clamp: 12;
   line-clamp: 12;
 }
-.articles .news-card__footer, .interesting .news-card__footer {
+.articles .news-card__footer, .articles .news-card .news-footer, .interesting .news-card__footer, .interesting .news-card .news-footer {
   margin-bottom: 25px;
   align-items: flex-start;
 }
 
-.article__data {
+.article__data, .news__data {
   justify-content: center;
   margin-bottom: 35px;
 }
-.article__date {
+.article__date, .news__date {
   color: var(--general-color);
 }
-.article__separator {
+.article__separator, .news__separator {
   width: 2px;
   height: 12px;
   background-color: var(--text-color);
@@ -2485,28 +2590,28 @@ div[data-modal-name=vacancy] .btn {
   object-fit: contain;
 }
 
-.article-footer {
+.article-footer, .news-footer {
   justify-content: space-between;
   padding: 40px 0;
 }
-.article-footer__views {
+.article-footer__views, .news-footer__views {
   font-size: 12px;
   color: #1a1a1a;
 }
-.article-footer__views svg {
+.article-footer__views svg, .news-footer__views svg {
   margin-right: 15px;
   flex-shrink: 0;
   display: block;
   width: 18px;
   height: 11px;
 }
-.article-footer__socials span {
+.article-footer__socials span, .news-footer__socials span {
   font-weight: 700;
   font-size: 20px;
   font-family: "PT Sans Narrow", sans-serif;
   margin-right: 30px;
 }
-.article-footer__socials-item {
+.article-footer__socials-item, .news-footer__socials-item {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -2516,13 +2621,13 @@ div[data-modal-name=vacancy] .btn {
   justify-content: center;
   transition: background-color 0.3s linear;
 }
-.article-footer__socials-item:hover {
+.article-footer__socials-item:hover, .news-footer__socials-item:hover {
   background-color: #d1e799;
 }
-.article-footer__socials-item + .article-footer__socials-item {
+.article-footer__socials-item + .article-footer__socials-item, .article-footer__socials-item + .news-footer__socials-item, .news-footer__socials-item + .article-footer__socials-item, .news-footer__socials-item + .news-footer__socials-item {
   margin-left: 20px;
 }
-.article-footer__socials-item svg {
+.article-footer__socials-item svg, .news-footer__socials-item svg {
   display: block;
   width: 100%;
   height: 100%;
@@ -2692,8 +2797,23 @@ div[data-modal-name=vacancy] .btn {
 .address-help__card {
   border: 1px solid #f2f2f2;
 }
+.address-help__card:hover {
+  cursor: pointer;
+}
+.address-help__card.saved .help-card__title {
+  margin-bottom: 0;
+}
 .address-help__show-more {
   margin: 60px auto 30px;
+}
+
+.faq-intro {
+  padding-bottom: 50px;
+}
+
+.faq__item .toggle-body {
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
 }
 
 .card-intro {
@@ -3421,6 +3541,9 @@ div[data-modal-name=vacancy] .btn {
   .address-help__show-more a {
     padding: 15px 60px;
   }
+  .news-picture-detail {
+    height: 300px;
+  }
   .card {
     flex-direction: column;
   }
@@ -3479,6 +3602,9 @@ div[data-modal-name=vacancy] .btn {
   }
   .grid-body.grid-col-l-2 {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-body.grid-col-l-1 {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 @media (max-width: 600px) {
@@ -3591,18 +3717,18 @@ div[data-modal-name=vacancy] .btn {
   .article-content__item + .article-content__item {
     margin-top: 20px;
   }
-  .article-footer {
+  .article-footer, .news-footer {
     align-items: flex-start;
   }
-  .article-footer__socials {
+  .article-footer__socials, .news-footer__socials {
     flex-direction: column;
     align-items: flex-start;
   }
-  .article-footer__socials span {
+  .article-footer__socials span, .news-footer__socials span {
     margin-right: 0;
     margin-bottom: 20px;
   }
-  .article-footer__views {
+  .article-footer__views, .news-footer__views {
     position: relative;
     top: 10px;
   }
@@ -3612,6 +3738,24 @@ div[data-modal-name=vacancy] .btn {
   .block-link {
     max-width: 270px;
     width: 100%;
+    margin: 0 auto;
+  }
+  .news-page {
+    flex-direction: column;
+  }
+  .news-page > div {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .news-list {
+    flex: 0 1 auto;
+    width: 100%;
+  }
+  .news-list .news-card {
+    margin: 0 auto;
+  }
+  .news-aside {
+    max-width: 370px;
     margin: 0 auto;
   }
   .header-toggle-wrapper.header-toggle-search .header-toggle {
