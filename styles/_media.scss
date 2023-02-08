@@ -459,6 +459,11 @@
 	.news-picture-detail {
 		height: 300px;
 	}
+	.contacts {
+		&__map {
+			height: 400px;
+		}
+	}
 	.card {
 		flex-direction: column;
 		&__info, &__pay {
