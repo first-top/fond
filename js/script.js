@@ -173,6 +173,7 @@ window.addEventListener("DOMContentLoaded", () => {
   * */
   const formUtils = {
     formName: "",
+    modal: null,
     isValidatePhone(value) {
       return !(value.length < 11)
     },
@@ -197,6 +198,7 @@ window.addEventListener("DOMContentLoaded", () => {
     },
     getFormData(formName) {
       const form = document.forms[formName]
+      this.modal = form.closest(".modal")
       const formData = new FormData(form)
       const url = form.action || "url"
       const data = {}
@@ -276,6 +278,7 @@ window.addEventListener("DOMContentLoaded", () => {
           }).then(res => res.json()).then(data => {
             console.log(data)
             if (!data?.error) {
+              this.modal.classList.remove("opened")
               this.showSuccessModal()
             }
           })
