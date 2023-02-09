@@ -485,6 +485,42 @@ body {
 	}
 }
 
+.socials-share {
+	&_center {
+		justify-content: center;
+	}
+	&_right {
+		justify-content: flex-end;
+	}
+	&_left {
+		justify-content: flex-start;
+	}
+	&__item {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background-color: #ebf8c5;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background-color 0.3s linear;
+		&:hover {
+			background-color: #d1e799;
+		}
+		& + & {
+			margin-left: 20px;
+		}
+		svg {
+			display: block;
+			width: 100%;
+			height: 100%;
+			max-width: 24px;
+			max-height: 22px;
+			fill: var(--accent-color);
+		}
+	}
+}
+
 .page-intro-content {
 	padding-top: 55px;
 }
@@ -726,13 +762,7 @@ body {
 	}
 }
 
-div[data-modal-name="vacancy"] {
-	.modal__body {
-		padding: 40px 0;
-	}
-}
-
-div[data-modal-name="vacancy"] {
+div[data-modal-name="vacancy"], div[data-modal-name="feedback"] {
 	.modal__body {
 		padding: 40px 0;
 	}
@@ -766,6 +796,9 @@ div[data-modal-name="vacancy"] {
 	.btn {
 		padding: 21px 60px;
 		border-radius: 32px;
+		&:hover {
+			cursor: pointer;
+		}
 	}
 	
 	

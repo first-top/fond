@@ -83,6 +83,11 @@ class K1StaticRange {
   
   setMarkerPosition(marker, percent) {
     marker.style.left = `${percent}%`
+    if (marker.getAttribute("data-type") === "min") {
+      this.markersData.min.position = marker.getBoundingClientRect().x
+    } else {
+      this.markersData.max.position = marker.getBoundingClientRect().x
+    }
   }
   
   getRangePosition() {
@@ -145,7 +150,7 @@ class K1StaticRange {
       this.timeout = setTimeout(function() {
         const type = target.getAttribute("data-type")
         if (type === "min") {
-          let value = target.value.replace(/\D/g, "")
+          let value = target.value.replace(/\D/g, ""), percent
           _this.markersData.min.value = value
           if (value >= _this.markersData.max.value) {
             _this.markersData.min.value = _this.markersData.max.value - 1
@@ -154,16 +159,17 @@ class K1StaticRange {
           if (value < 0) {
             _this.markersData.min.value = target.value = 0
           }
-          const percent = _this.markersData.min.value / _this.maxValue * 100
-          const a = {
-            a: Math.round(percent),
-            b: Math.round(_this.markersData.max.percent)
+          percent = _this.markersData.min.value / _this.maxValue * 100
+          const def = _this.markersData.max.percent - percent
+          _this.markersData.min.percent = percent
+          if (def < 0.05) {
+            percent = _this.markersData.max.percent - 0.5
           }
-          console.log(_this.markersData, percent)
           _this.setMarkerPosition(_this.markers[0], percent)
         }
         if (type === "max") {
           const currentValue = +target.value.replace(/\D/g, "")
+          let percent
           _this.markersData.max.value = +target.value.replace(/\D/g, "")
           
           if (currentValue <= _this.markersData.min.value) {
@@ -174,7 +180,12 @@ class K1StaticRange {
             _this.markersData.max.value =  _this.maxValue
             target.value = _this.markersData.max.value.toLocaleString()
           }
-          const percent = _this.markersData.max.value / _this.maxValue * 100
+          percent = _this.markersData.max.value / _this.maxValue * 100
+          const def = percent - _this.markersData.min.percent
+          _this.markersData.max.percent = percent
+          if (def < 0.05) {
+            percent = _this.markersData.min.percent + 0.5
+          }
           _this.setMarkerPosition(_this.markers[1], percent)
         }
         _this.setStrokeStyle()
@@ -217,6 +228,8 @@ class K1StaticRange {
       }
       
       if (this.currentMarkerType === "max") {
+        // console.log("pos", this.markersData.min.position)
+        // console.log("x", x)
         if (this.markersData.min.position >= x) return false
         this.markersData.max.percent = percent
         this.markersData.max.position = x
@@ -291,7 +304,6 @@ class K1StaticRange {
       // this.disableValues()
     } else {
       this.moveHandlerBind = this.moveHandler.bind(this)
-      // this.clickHandlerBind = this.clickHandler.bind(this)
       const {x, width} = this.getRangePosition()
       window.addEventListener("mouseup", () => {
         this.currentMarker = null

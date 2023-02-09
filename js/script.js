@@ -198,6 +198,7 @@ window.addEventListener("DOMContentLoaded", () => {
     getFormData(formName) {
       const form = document.forms[formName]
       const formData = new FormData(form)
+      const url = form.action || "url"
       const data = {}
       let hasError = false
       for (let pair of formData.entries()) {
@@ -256,15 +257,13 @@ window.addEventListener("DOMContentLoaded", () => {
         data[`${pair[0]}`] = pair[1]
       }
       return {
-        data, hasError
+        data, hasError, url
       }
     },
-    sendData(formName, urlString, event) {
+    sendData(formName, event) {
       event.preventDefault();
       this.formName = formName
-      const url = urlString !== "url" ? urlString : "url"
-      console.log("url-", url)
-      const {data, hasError} = this.getFormData(formName)
+      const {data, hasError, url} = this.getFormData(formName)
       if (hasError) {
         console.log("error")
         return false
@@ -305,10 +304,11 @@ window.addEventListener("DOMContentLoaded", () => {
   /*
   * Модалки
   * */
-  const modal = {
+  const modalVacancy = {
     bodyNode: document.querySelector("body"),
     modalBackArray: document.querySelectorAll(".modal-bg"),
     modalVacancyOpenArray: document.querySelectorAll("[data-modal='vacancy']"),
+    
     currentModal: null,
     addListeners() {
       if (this.modalVacancyOpenArray.length) {
@@ -316,6 +316,7 @@ window.addEventListener("DOMContentLoaded", () => {
           button.addEventListener("click", this.showModalBind)
         })
       }
+     
     },
     showModal(event) {
       event.preventDefault()
@@ -330,7 +331,6 @@ window.addEventListener("DOMContentLoaded", () => {
       this.bodyNode.classList.add("no-scroll")
       this.currentModal.addEventListener("click", this.closeModalBind)
       window.addEventListener("keyup", this.closeModalBind)
-      console.log(this.currentModal)
       this.currentModal
         .querySelector("form")
         .addEventListener("submit", this.sendVacancyDataBind)
@@ -361,6 +361,7 @@ window.addEventListener("DOMContentLoaded", () => {
     getVacancyData() {
       const form = document.forms["vacancy-form"]
       const formData = new FormData(form)
+      const url = form.action || "string url"
       const data = {}
       let hasError = false
       for (let pair of formData.entries()) {
@@ -395,13 +396,12 @@ window.addEventListener("DOMContentLoaded", () => {
         data[`${pair[0]}`] = pair[1]
       }
       return {
-        data, hasError
+        data, hasError, url
       }
     },
     sendVacancyData(event) {
       event.preventDefault();
-      const url = "string url"
-      const {data, hasError} = this.getVacancyData()
+      const {data, hasError, url} = this.getVacancyData()
       if (hasError) {
         console.log("error")
         return false
@@ -420,28 +420,6 @@ window.addEventListener("DOMContentLoaded", () => {
         } else {
           this.showSuccessVacancyBind()
         }
-        // setTimeout(, 3000)
-        
-        // fetch(url, {
-        //   method: "POST",
-        //   body: JSON.stringify(formData)
-        // }).then(res => res.json()).then(data => {
-        //   console.log(data)
-        //   if (!data?.error) {
-        //     successForm.style.display = "flex"
-        //     for (let key in formData) {
-        //       if (formData.hasOwnProperty(key)) {
-        //         formData[key] = "";
-        //         const input = document.querySelector(`[name="${key}"]`)
-        //         input.value = ""
-        //       }
-        //     }
-        //     setTimeout(() => {
-        //       successForm.style.display = "none"
-        //     }, 2000)
-        //   }
-        // })
-        // console.log(data)
       }
     },
     showSuccessVacancy() {
@@ -464,6 +442,50 @@ window.addEventListener("DOMContentLoaded", () => {
       this.sendVacancyDataBind = this.sendVacancyData.bind(this)
       this.showSuccessVacancyBind = this.showSuccessVacancy.bind(this)
       this.addListeners()
+    }
+  }
+  
+  const modalContacts = {
+    modalOpen: document.querySelector(".contacts__button"),
+    bodyNode: document.querySelector("body"),
+    modal: document.querySelector(".modal[data-modal-name='feedback']"),
+    showModal() {
+      this.modal.classList.add("opened")
+      this.bodyNode.classList.add("no-scroll")
+      this.modal.addEventListener("click", this.closeModalBind)
+      window.addEventListener("keyup", this.closeModalBind)
+    },
+    closeModal({key, keyCode, code, target, type}) {
+      if (type === "keyup") {
+        if (key === "Escape" || code === "Escape" || keyCode === 27) {
+          this.modal.classList.remove('opened')
+          this.bodyNode.classList.remove("no-scroll")
+          this.modal.removeEventListener("click", this.closeModalBind)
+          window.removeEventListener("keyup", this.closeModalBind)
+        }
+      }
+      if (type === "click") {
+        if (target.closest(".modal__body")) {
+        
+        } else {
+          this.modal.classList.remove('opened')
+          this.bodyNode.classList.remove("no-scroll")
+          this.modal.removeEventListener("click", this.closeModalBind)
+          window.removeEventListener("keyup", this.closeModalBind)
+        }
+      }
+    },
+    addListeners() {
+      this.modalOpen.addEventListener("click", this.showModalBind)
+    },
+    init() {
+      if (this.modalOpen) {
+        this.form = this.modal.querySelector("form")
+        this.closeModalBind = this.closeModal.bind(this)
+        this.showModalBind = this.showModal.bind(this)
+        this.form.addEventListener("submit", formUtils.sendData.bind(formUtils, "feedback-form"))
+        this.addListeners()
+      }
     }
   }
   /*
@@ -495,7 +517,7 @@ window.addEventListener("DOMContentLoaded", () => {
     form: document.forms["friends-form"],
     init() {
       if (this.form) {
-        this.form.addEventListener("submit", formUtils.sendData.bind(formUtils, "friends-form", "url"))
+        this.form.addEventListener("submit", formUtils.sendData.bind(formUtils, "friends-form"))
       }
     }
   }
@@ -506,7 +528,7 @@ window.addEventListener("DOMContentLoaded", () => {
     form: document.forms["dispatch-form"],
     init() {
       if (this.form) {
-        this.form.addEventListener("submit", formUtils.sendData.bind(formUtils, "dispatch-form", "url"))
+        this.form.addEventListener("submit", formUtils.sendData.bind(formUtils, "dispatch-form"))
       }
     }
   }
@@ -611,7 +633,7 @@ window.addEventListener("DOMContentLoaded", () => {
     
     costRange.range.addEventListener("afterChange", function () {
       const values = costRange.getCurrentValue()
-      costInputs.min.value = values.min.value
+      costInputs.min.value = values.min.value.toLocaleString()
       costInputs.max.value = values.max.value.toLocaleString()
     })
     
@@ -892,13 +914,20 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
   
+  const simpleForm = document.forms["help-simple-form"]
+  
+  if (simpleForm) {
+    simpleForm.addEventListener("submit", formUtils.sendData.bind(formUtils, "help-simple-form"))
+  }
+  
   helpForm.init()
+  modalContacts.init()
   selectCustom.init()
   articleMainPicture.init()
   friendsForm.init()
   dispatchForm.init()
   toggle.init();
-  modal.init()
+  modalVacancy.init()
   headerActions.init()
   circleProgress.init()
   

@@ -451,6 +451,40 @@ body.no-scroll {
   width: 18px;
 }
 
+.socials-share_center {
+  justify-content: center;
+}
+.socials-share_right {
+  justify-content: flex-end;
+}
+.socials-share_left {
+  justify-content: flex-start;
+}
+.socials-share__item {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #ebf8c5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s linear;
+}
+.socials-share__item:hover {
+  background-color: #d1e799;
+}
+.socials-share__item + .socials-share__item {
+  margin-left: 20px;
+}
+.socials-share__item svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 24px;
+  max-height: 22px;
+  fill: var(--accent-color);
+}
+
 .page-intro-content {
   padding-top: 55px;
 }
@@ -665,37 +699,36 @@ body.no-scroll {
   align-items: flex-end;
 }
 
-div[data-modal-name=vacancy] .modal__body {
+div[data-modal-name=vacancy] .modal__body, div[data-modal-name=feedback] .modal__body {
   padding: 40px 0;
 }
-
-div[data-modal-name=vacancy] .modal__body {
-  padding: 40px 0;
-}
-div[data-modal-name=vacancy] .modal__title {
+div[data-modal-name=vacancy] .modal__title, div[data-modal-name=feedback] .modal__title {
   margin-bottom: 55px;
 }
-div[data-modal-name=vacancy] form {
+div[data-modal-name=vacancy] form, div[data-modal-name=feedback] form {
   max-width: 370px;
   width: 100%;
   margin: 0 auto;
 }
-div[data-modal-name=vacancy] .form-input + .form-input {
+div[data-modal-name=vacancy] .form-input + .form-input, div[data-modal-name=feedback] .form-input + .form-input {
   margin-top: 50px;
 }
-div[data-modal-name=vacancy] .modal__police {
+div[data-modal-name=vacancy] .modal__police, div[data-modal-name=feedback] .modal__police {
   font-size: 12px;
   text-align: center;
   margin: 30px 0 28px;
 }
-div[data-modal-name=vacancy] .modal__police a {
+div[data-modal-name=vacancy] .modal__police a, div[data-modal-name=feedback] .modal__police a {
   font-size: inherit;
   text-decoration: underline;
   display: block;
 }
-div[data-modal-name=vacancy] .btn {
+div[data-modal-name=vacancy] .btn, div[data-modal-name=feedback] .btn {
   padding: 21px 60px;
   border-radius: 32px;
+}
+div[data-modal-name=vacancy] .btn:hover, div[data-modal-name=feedback] .btn:hover {
+  cursor: pointer;
 }
 
 .default-arrow {
