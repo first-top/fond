@@ -201,10 +201,6 @@ body {
   font-weight: 400;
   color: var(--text-color);
 }
-body.no-scroll {
-  overflow: hidden;
-}
-
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -780,6 +776,66 @@ div[data-modal-name=vacancy] .btn:hover, div[data-modal-name=feedback] .btn:hove
   margin-bottom: 25px;
 }
 
+.visual-editor {
+  font-size: 14px;
+  font-family: "Fira Sans", sans-serif;
+  padding: 30px 0;
+}
+.visual-editor p {
+  margin-bottom: 10px;
+}
+.visual-editor h1, .visual-editor h2, .visual-editor h3 {
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.visual-editor h1 {
+  font-size: 40px;
+}
+.visual-editor h2 {
+  font-size: 34px;
+}
+.visual-editor h3 {
+  font-size: 24px;
+}
+.visual-editor table {
+  border-collapse: collapse;
+}
+.visual-editor table td {
+  border: 1px solid #000;
+  padding: 10px;
+}
+.visual-editor.article-body p {
+  margin-bottom: 35px;
+}
+.visual-editor.article-body table {
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+.visual-editor.article-body table tr {
+  display: flex;
+}
+.visual-editor.article-body table td {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.visual-editor.article-body table td p {
+  margin: 0;
+}
+.visual-editor.article-body table td:first-child {
+  padding-right: 15px;
+}
+.visual-editor.article-body table td:last-child {
+  padding-left: 15px;
+}
+a.no-link {
+  pointer-events: none;
+}
+
 .header {
   background-color: #fff;
   padding: 17px 0;
@@ -854,7 +910,6 @@ div[data-modal-name=vacancy] .btn:hover, div[data-modal-name=feedback] .btn:hove
   background-color: var(--general-color-hover);
 }
 .header__menu.opened {
-  z-index: 101;
   background-color: var(--white);
 }
 .header__menu.opened span {
@@ -1422,6 +1477,60 @@ div[data-modal-name=vacancy] .btn:hover, div[data-modal-name=feedback] .btn:hove
   padding-top: 90px;
   padding-bottom: 130px;
 }
+.header-toggle__close-menu {
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-left: 45px;
+  position: absolute;
+  right: 0;
+  top: -123px;
+  z-index: 102;
+  transition: background-color 0.3s linear;
+  background-color: var(--white);
+}
+.header-toggle__close-menu span {
+  background-color: var(--general-color);
+}
+.header-toggle__close-menu span:nth-child(1) {
+  opacity: 0;
+}
+.header-toggle__close-menu span:nth-child(2) {
+  transform-origin: center;
+  transform: rotate(-45deg);
+}
+.header-toggle__close-menu span:nth-child(3) {
+  transform-origin: center;
+  transform: rotate(45deg);
+}
+.header-toggle__close-menu span:nth-child(4) {
+  opacity: 0;
+}
+.header-toggle__close-menu span {
+  transition: transform 0.5s linear, opacity 0.5s linear, background-color 0.5s linear;
+  width: 24px;
+  height: 2px;
+  display: block;
+  position: absolute;
+  left: calc(50% - 12px);
+  top: calc(50% - 1px);
+  background-color: var(--general-color);
+}
+.header-toggle__close-menu span:nth-child(1) {
+  opacity: 0;
+}
+.header-toggle__close-menu span:nth-child(2) {
+  transform-origin: center;
+  transform: rotate(-45deg);
+}
+.header-toggle__close-menu span:nth-child(3) {
+  transform-origin: center;
+  transform: rotate(45deg);
+}
+.header-toggle__close-menu span:nth-child(4) {
+  opacity: 0;
+}
 .header-toggle__wrapper {
   position: relative;
 }
@@ -1772,6 +1881,13 @@ div[data-modal-name=vacancy] .btn:hover, div[data-modal-name=feedback] .btn:hove
   max-width: 870px;
   margin: 0 auto;
   gap: 30px;
+}
+.about-fond-links__box.flex-body {
+  justify-content: center;
+}
+.about-fond-links__box.flex-body .about-fond-links__item {
+  max-width: 270px;
+  width: 100%;
 }
 
 .friends-intro {
@@ -2772,6 +2888,12 @@ div[data-modal-name=vacancy] .btn:hover, div[data-modal-name=feedback] .btn:hove
 .interesting .news-card, .interesting .news-card * {
   box-sizing: border-box;
 }
+.interesting .news-card__description {
+  margin-bottom: 20px;
+}
+.interesting .news-card__footer {
+  margin-bottom: 0;
+}
 
 .contacts__body {
   gap: 30px;
@@ -3740,6 +3862,22 @@ div[data-modal-name=vacancy] .btn:hover, div[data-modal-name=feedback] .btn:hove
   .grid-body.grid-col-l-1 {
     grid-template-columns: repeat(1, 1fr);
   }
+  .visual-editor.article-body table:nth-child(odd) tr {
+    flex-direction: column-reverse;
+  }
+  .visual-editor.article-body table tr {
+    flex-direction: column;
+    row-gap: 30px;
+  }
+  .visual-editor.article-body table td {
+    width: 100%;
+  }
+  .visual-editor.article-body table td:first-child {
+    padding-right: 0;
+  }
+  .visual-editor.article-body table td:last-child {
+    padding-left: 0;
+  }
 }
 @media (max-width: 600px) {
   .header__actions {
@@ -3868,6 +4006,9 @@ div[data-modal-name=vacancy] .btn:hover, div[data-modal-name=feedback] .btn:hove
   }
   .about-fond-links__box, .information-links__box {
     gap: 20px;
+  }
+  .about-fond-links__box.flex-body {
+    flex-direction: column;
   }
   .block-link {
     max-width: 270px;

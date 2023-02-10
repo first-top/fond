@@ -27,5 +27,13 @@
 		max-width: 870px;
 		margin: 0 auto;
 		gap: 30px;
+		&.flex-body {
+			justify-content: center;
+			.about-fond-links__item {
+				max-width: 270px;
+				width: 100%;
+				
+			}
+		}
 	}
 }

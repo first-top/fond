@@ -93,6 +93,7 @@ window.addEventListener("DOMContentLoaded", () => {
     toggleSearchNode: document.querySelector(".header-toggle-search"),
     searchButton: document.querySelector(".header-toggle-button-search"),
     closeSearchButton: document.querySelector(".header-toggle__close"),
+    closeMenuButton: document.querySelector(".header-toggle__close-menu"),
     bodyNode: document.querySelector("body"),
     wrapperHandlerBind: null,
     windowClickHandler(type, {target}) {
@@ -139,8 +140,9 @@ window.addEventListener("DOMContentLoaded", () => {
       this.bodyNode.classList.remove("no-scroll")
     },
     addHandlers() {
-      this.menuButton.addEventListener("click", this.toggleMenu.bind(this))
-      this.searchButton.addEventListener("click", this.showSearch.bind(this))
+      this.menuButton?.addEventListener("click", this.toggleMenu.bind(this))
+      this.closeMenuButton?.addEventListener("click", this.toggleMenu.bind(this))
+      this.searchButton?.addEventListener("click", this.showSearch.bind(this))
     },
     setBlockedNodes() {
       this.toggleMenuNode.style.display = "block"
@@ -174,6 +176,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const formUtils = {
     formName: "",
     modal: null,
+    bodyNode: document.querySelector("body"),
     isValidatePhone(value) {
       return !(value.length < 11)
     },
@@ -207,6 +210,46 @@ window.addEventListener("DOMContentLoaded", () => {
         if (pair[0] === "form_text_1") {
           const input = form.querySelector("[name='form_text_1']").closest(".form-input")
           if (!this.isValidMail(pair[1])) {
+            input.classList.add("error")
+            hasError = true
+            input.addEventListener("input", this.inputHandler.bind(this))
+          } else {
+            input.classList.remove("error")
+            data[`${pair[0]}`] = pair[1]
+          }
+          continue
+        }
+        if (pair[0] === "form_text_19") {
+          const input = form.querySelector("[name='form_text_19']").closest(".form-input")
+          if (!this.isValidMail(pair[1])) {
+            input.classList.add("error")
+            hasError = true
+            input.addEventListener("input", this.inputHandler.bind(this))
+          } else {
+            input.classList.remove("error")
+            data[`${pair[0]}`] = pair[1]
+          }
+          continue
+        }
+        if (pair[0] === "form_text_20") {
+          const area = form.querySelector("[name='form_text_20']").closest("div")
+          if (!pair[1].length) {
+            hasError = true
+            area.classList.add("error")
+            area.addEventListener("input", ({target}) => {
+              if (target.value.length) {
+                area.classList.remove("error")
+              }
+            })
+          } else {
+            data[`${pair[0]}`] = pair[1]
+            area.classList.remove("error")
+          }
+          continue
+        }
+        if (pair[0] === "form_text_21") {
+          const input = form.querySelector("[name='form_text_21']").closest(".form-input")
+          if (!this.isValidatePhone(pair[1])) {
             input.classList.add("error")
             hasError = true
             input.addEventListener("input", this.inputHandler.bind(this))
@@ -271,6 +314,7 @@ window.addEventListener("DOMContentLoaded", () => {
         return false
       } else {
         console.log("clean")
+        // if (false) {
         if (url !== "url") {
           fetch(url, {
             method: "POST",
@@ -278,12 +322,14 @@ window.addEventListener("DOMContentLoaded", () => {
           }).then(res => res.json()).then(data => {
             console.log(data)
             if (!data?.error) {
-              this.modal.classList.remove("opened")
+              this.modal?.classList.remove("opened")
               this.showSuccessModal()
             }
           })
           console.log(data)
         } else {
+          this.modal.classList.remove("opened")
+          
           this.showSuccessModal()
         }
       }
@@ -300,6 +346,7 @@ window.addEventListener("DOMContentLoaded", () => {
       modal.classList.add("opened")
       this.cleanForm(this.formName)
       setTimeout(function () {
+        this.bodyNode.classList.remove("no-scroll")
         modal.classList.remove("opened")
       }, 2000)
     }
@@ -539,34 +586,7 @@ window.addEventListener("DOMContentLoaded", () => {
   * Описывает большую картинку на детальной странице статьи
   * */
   const articleMainPicture = {
-    picture: document.querySelector(".article-content__main-picture"),
-    introBlock: document.querySelector(".article"),
-    contentBlock: document.querySelector(".article-content"),
-    
-    setMarginContent() {
-      this.contentBlock.style.marginTop = `-${this.pictureHeight / 2}px`
-    },
-    setIntroPadding() {
-      this.introBlock.style.paddingBottom = `${this.pictureHeight / 2}px`
-    },
-    setStyles() {
-      this.pictureHeight = this.picture.clientHeight
-      this.setIntroPadding()
-      this.setMarginContent()
-      this.section.style.paddingTop = `30px`
-    },
-    addListener() {
-      window.addEventListener("resize", this.setStyleBind)
-    },
-    init() {
-      if (this.picture) {
-        this.section = this.contentBlock.querySelector(".section")
-        this.setStyleBind = this.setStyles.bind(this)
-        this.setStyles()
-        this.addListener()
-      }
-      
-    }
+  
   }
   /*
   * Ползунки возраста
@@ -694,6 +714,55 @@ window.addEventListener("DOMContentLoaded", () => {
           toggleNode.addEventListener("click", toggleBind)
         })
       }
+    }
+  }
+  
+  const articleContent = {
+    picture: document.querySelector(".article-content__main-picture"),
+    introBlock: document.querySelector(".article"),
+    contentBlock: document.querySelector(".article-content"),
+    
+    setMarginContent() {
+      this.contentBlock.style.marginTop = `-${this.pictureHeight / 2}px`
+    },
+    setIntroPadding() {
+      this.introBlock.style.paddingBottom = `${this.pictureHeight / 2}px`
+    },
+    setStyles() {
+      this.pictureHeight = this.picture.clientHeight
+      this.setIntroPadding()
+      this.setMarginContent()
+      this.section.style.paddingTop = `30px`
+    },
+    removeEmptyTags() {
+      for(let child of this.content.children) {
+        if (child.tagName === "P" && !child.textContent.trim() ) {
+          child.remove()
+        }
+      }
+      // this.content.children.forEach(child => {
+      //   if (child.tagName === "P" && !child.textContent) child.remove()
+      // })
+    },
+    addListener() {
+      window.addEventListener("resize", this.setStyleBind)
+    },
+    init() {
+      this.content = this.contentBlock.querySelector(".visual-editor.article-body")
+      if (this.picture) {
+        
+        this.section = this.contentBlock.querySelector(".section")
+        this.setStyleBind = this.setStyles.bind(this)
+      
+        this.addListener()
+        const _this = this
+        window.addEventListener("load", _this.setStyles.bind(_this))
+      
+      }
+      if (this.content) {
+        this.removeEmptyTags()
+      }
+    
     }
   }
   
@@ -926,7 +995,7 @@ window.addEventListener("DOMContentLoaded", () => {
   helpForm.init()
   modalContacts.init()
   selectCustom.init()
-  articleMainPicture.init()
+  articleContent.init()
   friendsForm.init()
   dispatchForm.init()
   toggle.init();
